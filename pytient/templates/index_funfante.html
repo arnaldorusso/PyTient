@@ -1,0 +1,12 @@
+<html>
+<title>Cadastro Pacientes MedImagem</title>
+<b>Cadastro</b>
+
+<form method="POST" action="/new">
+    {{ form.hidden_tag() }}
+    {{ form.nome.label }} {{ form.nome(size=40) }}
+    <br/>
+    {{ form.rg.label }} {{ form.rg(size=12) }}
+    <br/>
+    {{ form.cadastrar }}
+</form>
