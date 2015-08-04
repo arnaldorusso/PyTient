@@ -5,8 +5,8 @@ from models import Register_patient
 
 class PatientForm(Form):
     nome = StringField(u'Nome')
-    rg = StringField(u'9.999.999-99')
-    nascimento = StringField(u'dd/mm/aaaa')
+    rg = StringField(u'RG: 9.999.999-99')
+    nascimento = StringField(u'Nascimento: dd/mm/aaaa')
     # endereco = StringField(u'Rua/Av./Travessa/')
     # numero = StringField(u'99999')
     # complemento = StringField(u'Apto./Cond./Sitio/')
