@@ -1,4 +1,4 @@
-from flask import render_template, redirect, url_for, jsonify
+from flask import render_template, redirect, url_for, jsonify, request
 from models import Register_patient
 from forms import PatientForm
 from pytient_app import app, db
@@ -10,10 +10,13 @@ def index():
     form = PatientForm()
     return render_template('index.html', form=form)  # , cadastro=cadastros)
 
-@app.route("/paciente.json")
-def paciente_json():
-    pacientes = models.Register_patient.query.all()
-    return jasonify(pacientes=[p.nome for p in pacientes])
+@app.route("/autocomplete",methods=['GET'])
+def autocomplete():
+    pacientes = Register_patient.query.all()
+    NAMES = [p.nome for p in pacientes]
+    search = request.args.get('term')
+    app.logger.debug(search)
+    return jsonify(json_list=NAMES)
 
 @app.route(u'/new', methods=[u'POST'])
 def newpatient():
