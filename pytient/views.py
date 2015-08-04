@@ -1,4 +1,4 @@
-from flask import render_template, redirect, url_for
+from flask import render_template, redirect, url_for, jsonify
 from models import Register_patient
 from forms import PatientForm
 from pytient_app import app, db
@@ -9,6 +9,11 @@ def index():
     cadastros = Register_patient.query.all()
     form = PatientForm()
     return render_template('index.html', form=form)  # , cadastro=cadastros)
+
+@app.route("/paciente.json")
+def paciente_json():
+    pacientes = models.Register_patient.query.all()
+    return jasonify(pacientes=[p.nome for p in pacientes])
 
 @app.route(u'/new', methods=[u'POST'])
 def newpatient():
