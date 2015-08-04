@@ -1,4 +1,5 @@
 from flask.ext.wtf import Form
+from autocomplete.forms import AutocompleteField
 from wtforms.fields import StringField, SubmitField
 from models import Register_patient
 
