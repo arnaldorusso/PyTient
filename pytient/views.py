@@ -1,4 +1,4 @@
-from flask import render_template, redirect, url_for, jsonify
+from flask import render_template, redirect, url_for, jsonify, request
 from models import Register_patient
 from forms import PatientForm
 from pytient_app import app, db
@@ -29,3 +29,16 @@ def newpatient():
         db.session.add(cadastro)
         db.session.commit()
     return redirect(url_for('index'))
+
+
+
+from flask import jsonify
+
+NAMES=["abc","abcd","abcde","abcdef"]
+
+@app.route('/autocomplete',methods=['GET'])
+def autocomplete():
+    search = request.args.get('term')
+
+    app.logger.debug(search)
+    return jsonify(json_list=NAMES)
